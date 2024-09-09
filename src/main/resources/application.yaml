@@ -40,3 +40,8 @@ management:
       enabled: true
     livenessstate:
       enabled: true
+logging:
+  level:
+    org:
+      zalando:
+        logbook: trace
