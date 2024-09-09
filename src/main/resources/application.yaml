@@ -42,6 +42,4 @@ management:
       enabled: true
 logging:
   level:
-    org:
-      zalando:
-        logbook: trace
+    org.zalando.logbook: trace
