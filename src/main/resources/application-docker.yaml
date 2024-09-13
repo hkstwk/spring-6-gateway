@@ -3,31 +3,30 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000
+          issuer-uri: http://auth-server:9000
   cloud:
     gateway:
       routes:
         - id: spring-6-rest-mvc
-          uri: http://localhost:8082
+          uri: http://rest-mvc:8080
           predicates:
             - Path=/api/v1/*
         - id: spring-6-reactive
-          uri: http://localhost:8083
+          uri: http://reactive:8080
           predicates:
             - Path=/api/v2/*
         - id: spring-6-reactive-mongo
-          uri: http://localhost:8084
+          uri: http://reactive-mongo:8080
           predicates:
             - Path=/api/v3/*
-# ENABLE BELOW LINES FOR TROUBLESHOOTING
-#      httpserver:
-#        wiretap: true
-#      httpclient:
-#        wiretap: true
+        - id: spring-6-auth-server
+          uri: http://auth-server:9000
+          predicates:
+            - Path=/oauth2/**
 logging:
   level:
-#    root: error
-#    reactor.netty: trace
+    #    root: error
+    #    reactor.netty: trace
     org.springframework.cloud.gateway: trace
     org.springframework.boot.actuate: trace
     org.zalando.logbook: trace
